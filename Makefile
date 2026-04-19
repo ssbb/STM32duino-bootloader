@@ -23,7 +23,7 @@ DEBUG =
 
 INCDIRS = ./$(ST_LIB) ./$(ST_USB)
 
-CFLAGS = $(DEBUG)
+CFLAGS = $(DEBUG) -fcommon
 CFLAGS += -O$(OPT)
 CFLAGS += -ffunction-sections -fdata-sections
 CFLAGS += -Wall -Wimplicit
@@ -124,6 +124,7 @@ generic-pd1: begin clean gccversion build_generic-pd1 sizeafter finished  copy_g
 generic-pa1: begin clean gccversion build_generic-pa1 sizeafter finished  copy_generic-pa1 end
 generic-pa1-button-pa8: begin clean gccversion build_generic-pa1-button-pa8 sizeafter finished  copy_generic-pa1-button-pa8 end
 generic-pb9: begin clean gccversion build_generic-pb9 sizeafter finished  copy_generic-pb9 end
+generic-pb11: begin clean gccversion build_generic-pb11 sizeafter finished  copy_generic-pb11 end
 generic-pe2: begin clean gccversion build_generic-pe2 sizeafter finished  copy_generic-pe2 end
 generic-pa9: begin clean gccversion build_generic-pa9 sizeafter finished  copy_generic-pa9 end
 generic-pe5: begin clean gccversion build_generic-pe5 sizeafter finished  copy_generic-pe5 end
@@ -267,6 +268,17 @@ copy_generic-pb9:
 	@echo "Copying to binaries folder"
 	@echo
 	cp $(TARGET).bin bootloader_only_binaries/generic_boot20_pb9.bin
+	@echo
+
+build_generic-pb11: TARGETFLAGS= -DTARGET_GENERIC_F103_PB11 $(DEFINES)
+# Set the linker script
+build_generic-pb11: LDFLAGS +=-T$(ST_LIB)/c_only_md_high_density.ld
+build_generic-pb11: elf bin lss sym
+copy_generic-pb11:
+	@echo
+	@echo "Copying to binaries folder"
+	@echo
+	cp $(TARGET).bin bootloader_only_binaries/generic_boot20_pb11.bin
 	@echo
 
 

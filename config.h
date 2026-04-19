@@ -159,7 +159,7 @@
     #define BUTTON_BANK GPIOB
     #define BUTTON_PIN 2
     #define BUTTON_PRESSED_STATE 1
-	
+
 #elif defined TARGET_GENERIC_F103_PC13_FASTBOOT
 
 
@@ -237,6 +237,28 @@
 
     #define LED_BANK            GPIOB
     #define LED_PIN             9
+    #define LED_ON_STATE        1
+
+    // Button (if you have one)
+    #define BUTTON_BANK GPIOC
+    #define BUTTON_PIN 14
+    #define BUTTON_PRESSED_STATE 1
+
+#elif defined TARGET_GENERIC_F103_PB9
+
+    #define LED_BANK            GPIOB
+    #define LED_PIN             9
+    #define LED_ON_STATE        1
+
+    // Button (if you have one)
+    #define BUTTON_BANK GPIOC
+    #define BUTTON_PIN 14
+    #define BUTTON_PRESSED_STATE 1
+
+#elif defined TARGET_GENERIC_F103_PB11
+
+    #define LED_BANK            GPIOB
+    #define LED_PIN             11
     #define LED_ON_STATE        1
 
     // Button (if you have one)
@@ -411,7 +433,7 @@
     #error "No config for this target"
 #endif
 
-// Check if button pulldown should be enabled 
+// Check if button pulldown should be enabled
 // Default to True as this was the default prior to needing to disable it
 // in order to use the boot1 pin on the Blue Pill which has a very week pullup
 #ifndef BUTTON_INPUT_MODE
